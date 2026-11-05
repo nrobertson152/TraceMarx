@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tracemarx"
+dynamic = ["version"]
+description = "Wire lists, terminal strip plans, hose lists and labels from OpenSchematix schematics, with RevisionWorx"
+readme = "README.md"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "Nate Robertson" }]
+requires-python = ">=3.10"
+# OpenSchematix supplies the file format, themes and widgets. Pinned to an exact commit: TraceMarx also uses
+# OpenSchematix interface modules that are not its public API.
+dependencies = ["openschematix @ git+https://github.com/nrobertson152/OpenSchematix@0d7f94c96f93a94a1d344b28f038a97dbf5e938f"]
+classifiers = [
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Environment :: X11 Applications",
+    "Environment :: Win32 (MS Windows)",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pyinstaller", "revisionworx @ git+https://github.com/nrobertson152/RevisionWorx@main"]
+
+[project.scripts]
+tracemarx = "tracemarx.cli:main"
+
+[project.gui-scripts]
+tracemarx-gui = "tracemarx.gui.app:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "tracemarx.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["tracemarx*"]
+
+[tool.setuptools.package-data]
+tracemarx = ["demo/*", "resources/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers"
+markers = ["gui: needs a working Tk root / graphical display (real or Xvfb)"]
