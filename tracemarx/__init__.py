@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+"""TraceMarx: wire lists, terminal strip plans, hose lists and labels from OpenSchematix projects."""
+
+__version__ = "1.0.0"
+APP_NAME = "TraceMarx"
+VERSION = __version__
+COPYRIGHT = "Copyright © 2026 Nate Robertson."
+LICENSE_NAME = "GNU General Public License v3.0 or later"
+REPO_URL = "https://github.com/nrobertson152/TraceMarx"
+LICENSE_URL = "https://www.gnu.org/licenses/gpl-3.0.html"
+DONATE_URL = "https://ko-fi.com/nr270343"
